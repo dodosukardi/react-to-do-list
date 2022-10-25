@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 const Dropdown = (props) => {
   const { onChange, placeholder, items, selected } = props;
+
+  const [toggle, setToggle] = useState(false);
+  const toggleRef = useRef(null);
+
+  // const handleClickOutside = (event) => {
+  //   if (toggleRef.current && !toggleRef.current.contains(event.target)) {
+  //     setToggle(false);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   document.addEventListener('click', handleClickOutside, true);
+  //   return () => {
+  //     document.removeEventListener('click', handleClickOutside, true);
+  //   };
+  // }, []);
 
   return (
     <>
       <div>
         <button
+          onClick={() => setToggle(true)}
           type="button"
           className="inline-flex w-full justify-center rounded-full border-2 bg-gray-800 bg-opacity-20 px-4 py-1 text-sm font-medium text-white shadow-sm hover:bg-opacity-40 focus:outline-none active:bg-opacity-50"
         >
@@ -17,11 +34,17 @@ const Dropdown = (props) => {
         </button>
       </div>
 
-      <div className="absolute invisible group-hover:visible hover:visible left-0 z-10 mt-0 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+      <div
+        ref={toggleRef}
+        className={`absolute ${toggle ? 'visible' : 'invisible'} left-0 z-10 mt-0 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
+      >
         <div className="py-1" role="none">
           {items.map((item) => (
             <p
-              onClick={() => onChange(item)}
+              onClick={() => {
+                setToggle(false);
+                onChange(item);
+              }}
               className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200 cursor-pointer"
             >{item.name}</p>
           ))}

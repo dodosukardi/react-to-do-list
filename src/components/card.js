@@ -22,7 +22,7 @@ const Card = (props) => {
             height="64px"
           />
         )}
-        <Badge prior={priorBadge.level} editable />
+        <Badge prior={priorBadge.level} />
         <p class={`${data.done ? 'line-through' : ''} text-gray-700 text-base`}>
           {data.content}
         </p>
