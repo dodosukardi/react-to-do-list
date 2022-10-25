@@ -44,6 +44,7 @@ const Form = () => {
 
     setToDoList(list);
     setToDoText('');
+    setSelectedSort(null);
     inputRef.current.focus();
     localStorage.setItem('todo', JSON.stringify(list));
   };

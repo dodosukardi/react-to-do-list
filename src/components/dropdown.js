@@ -6,18 +6,18 @@ const Dropdown = (props) => {
   const [toggle, setToggle] = useState(false);
   const toggleRef = useRef(null);
 
-  // const handleClickOutside = (event) => {
-  //   if (toggleRef.current && !toggleRef.current.contains(event.target)) {
-  //     setToggle(false);
-  //   }
-  // };
+  const handleClickOutside = (event) => {
+    if (toggleRef.current && !toggleRef.current.contains(event.target)) {
+      setToggle(false);
+    }
+  };
 
-  // useEffect(() => {
-  //   document.addEventListener('click', handleClickOutside, true);
-  //   return () => {
-  //     document.removeEventListener('click', handleClickOutside, true);
-  //   };
-  // }, []);
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside, true);
+    return () => {
+      document.removeEventListener('click', handleClickOutside, true);
+    };
+  }, []);
 
   return (
     <>
